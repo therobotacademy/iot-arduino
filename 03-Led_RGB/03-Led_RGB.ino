@@ -30,6 +30,10 @@ void loop()
   delay(1000);
   setColor(0, 255, 255);  // aqua
   delay(1000);
+ 
+  /*
+   * setColor(0x4B, 0x0, 0x82);  // Internet- indigo
+   */
 }
 
 void setColor(int red, int green, int blue)

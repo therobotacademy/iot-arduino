@@ -15,13 +15,21 @@ int previous = LOW;    // the previous reading from the input pin
 // the following variables are long because the time, measured in miliseconds,
 // will quickly become a bigger number than can be stored in an int.
 long time = 0;         // the last time the output pin was toggled
-long debounce = 50;   // the debounce time, increase if the output flickers
+long debounce = 50;   // the debounce time (milliseconds), increase if the output flickers
  
 void setup()
 {
   pinMode(inPin, INPUT);
+  /* Only if you miss the external pull-up resistor
   digitalWrite(inPin, HIGH);   // turn on the built in pull-up resistor
+  */
   pinMode(outPin, OUTPUT);
+
+  /* Debug
+   * Serial.begin(9600);
+   */
+   
+   
 }
  
 void loop()
@@ -51,4 +59,15 @@ void loop()
  
   // Save the last reading so we keep a running tally
   previous = reading;
+
+  /* Debug
+   *  
+  Serial.print("Previous reading= ");
+  Serial.print(previous);
+  Serial.print("\tPresent reading= ");
+  Serial.print(reading);
+  Serial.print("\tLED state= ");
+  Serial.println(LEDstate);
+  delay(200);
+  */
 }

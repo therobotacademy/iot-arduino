@@ -20,4 +20,14 @@ void setup()
 
 void loop()
 {
+  /* Put the code in the loop() if you want the scale to be repeated forever
+  for (int i = 0; i < numTones; i++)
+  {
+    tone(speakerPin, tones[i]);
+    delay(500);
+  }
+  noTone(speakerPin);
+  delay(1000);
+     * 
+   */
 }
