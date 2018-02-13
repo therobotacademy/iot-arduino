@@ -2,7 +2,7 @@
 Control RGB LED
 */
 
-int redPin = 8;
+int redPin = 6;
 int greenPin = 9;
 int bluePin = 10;
 

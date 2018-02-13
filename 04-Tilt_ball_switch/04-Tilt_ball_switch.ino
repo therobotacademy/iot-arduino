@@ -6,7 +6,7 @@
  */
  
 int inPin = 2;         // the number of the input pin
-int outPin = 13;       // the number of the output pin
+int outPin = 11;       // the number of the output pin
  
 int LEDstate = HIGH;      // the current state of the output pin
 int reading;           // the current reading from the input pin
@@ -26,8 +26,9 @@ void setup()
   pinMode(outPin, OUTPUT);
 
   /* Debug
-   * Serial.begin(9600);
-   */
+   *  */
+   Serial.begin(9600);
+   
    
    
 }
@@ -61,7 +62,7 @@ void loop()
   previous = reading;
 
   /* Debug
-   *  
+   */ 
   Serial.print("Previous reading= ");
   Serial.print(previous);
   Serial.print("\tPresent reading= ");
@@ -69,5 +70,5 @@ void loop()
   Serial.print("\tLED state= ");
   Serial.println(LEDstate);
   delay(200);
-  */
+  
 }

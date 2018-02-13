@@ -13,7 +13,7 @@ void setup()
 void loop()
 {
   int photocellReading = analogRead(photocellPin);
-  int pitch = 200 + photocellReading / 4 ;
+  int pitch = 200 + photocellReading*2 ;
   tone(speakerPin, pitch);
 
   Serial.print("Analog reading = ");
