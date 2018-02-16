@@ -3,7 +3,7 @@
 Connect one end of the photocell to 5V, the other end to Analog 0.
 Then connect one end of a 10K resistor from Analog 0 to ground 
 Connect LED from pin 11 through a resistor to ground 
-For more information see http://learn.adafruit.com/photocells */
+*/
  
 int photocellPin = 0;     // the cell and 10K pulldown are connected to a0
 int photocellReading;     // the analog reading from the sensor divider
@@ -24,10 +24,22 @@ void loop(void) {
   LEDbrightness = map(photocellReading, 0, 1023, 0, 255);
   analogWrite(LEDpin, LEDbrightness);
 
-  Serial.print("Analog reading = ");
+  Serial.print("LED brightness = ");
+  Serial.print(LEDbrightness);
+  Serial.print("\tAnalog reading = ");
   Serial.print(photocellReading);     // the raw analog reading
-  Serial.print("\tLED brightness = ");
-  Serial.println(LEDbrightness);
  
-  delay(100);
+  // We'll have a few threshholds, qualitatively determined
+  if (photocellReading < 10)
+    Serial.println(" - Negro");
+  else if (photocellReading < 200)
+    Serial.println(" - Oscuro");
+  else if (photocellReading < 500)
+    Serial.println(" - Intermedio");
+  else if (photocellReading < 800)
+    Serial.println(" - Brillante");
+  else
+    Serial.println(" - Muy brillante");
+
+  delay(1000);
 }

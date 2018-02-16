@@ -1,5 +1,5 @@
 /*
-Adafruit Arduino - Lesson 10. Pseudo Thermin
+Pseudo Thermin
 */
 
 int speakerPin = 12;

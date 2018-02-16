@@ -1,5 +1,5 @@
 /*
-Adafruit Arduino - Lesson 10. Simple Sounds
+Simple Sounds
 */
 
 int speakerPin = 12;

@@ -2,7 +2,7 @@
  * 
  * This debouncing circuit is more rugged, and will work with tilt switches!
  *
- * http://www.ladyada.net/learn/sensor/tilt.html
+ * 
  */
  
 int inPin = 2;         // the number of the input pin
