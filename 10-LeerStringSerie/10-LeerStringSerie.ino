@@ -7,9 +7,14 @@ String leido = "";
 
 void setup() {
   Serial.begin(9600);
+}
+
+void loop() {
+  leido = "";
   Serial.println("Introduce una cadena de texto: ");
   while (Serial.available() == 0) {
     //No hago nada
+    //Serial.print("No hay nada...");
   }
 
   do {
@@ -29,11 +34,6 @@ void setup() {
   }  while (Serial.available() > 0);
 
   Serial.println("He leido la cadena: \"" + leido + "\"");
-}
-
-void loop() {
-
-  //no hago nada
 
 }
 
