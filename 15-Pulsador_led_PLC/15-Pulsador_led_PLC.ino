@@ -18,6 +18,6 @@ void setup() {
 }
 
 void loop() {
-  in(X1);      // Read Input 0
-  out(Y1);     // Send to Output 0
+  in(X1);      // Read Input from pin A1
+  out(Y1);     // Send Output to pin D5
 }
