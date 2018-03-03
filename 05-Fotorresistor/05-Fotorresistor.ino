@@ -5,7 +5,7 @@ Then connect one end of a 10K resistor from Analog 0 to ground
 Connect LED from pin 11 through a resistor to ground 
 */
  
-int photocellPin = 0;     // the cell and 10K pulldown are connected to a0
+int photocellPin = A0;     // the cell and 10K pulldown are connected to a0
 int photocellReading;     // the analog reading from the sensor divider
 int LEDpin = 11;          // connect Red LED to pin 11 (PWM pin)
 int LEDbrightness;        // 

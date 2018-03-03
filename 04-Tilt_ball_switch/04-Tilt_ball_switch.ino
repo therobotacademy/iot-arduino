@@ -24,13 +24,7 @@ void setup()
   digitalWrite(inPin, HIGH);   // turn on the built in pull-up resistor
   */
   pinMode(outPin, OUTPUT);
-
-  /* Debug
-   *  */
-   Serial.begin(9600);
-   
-   
-   
+  Serial.begin(9600); 
 }
  
 void loop()
@@ -52,9 +46,9 @@ void loop()
  
      // Now invert the output on the pin13 LED
     if (switchstate == HIGH)
-      LEDstate = LOW;
-    else
       LEDstate = HIGH;
+    else
+      LEDstate = LOW;
   }
   digitalWrite(outPin, LEDstate);
  
