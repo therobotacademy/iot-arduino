@@ -1,6 +1,5 @@
 #include <plcLib.h>
 
-/* Added communication for accepting input via serial port
 /* Programmable Logic Controller Library for the Arduino and Compatibles
 
    Crossing regulated with Traffic Lights - Timed Repeating Sequence
@@ -64,7 +63,7 @@
 */
                             // Define step names
 
-unsigned int START = 0;     // Start-up state (START = 1 to automatically start here)
+unsigned int START = 1;     // Start-up state (START = 1 to automatically start here)
 unsigned int STEP1 = 0;     // Step 1
 unsigned int STEP2 = 0;     // Step 2
 unsigned int STEP3 = 0;     // Step 3
@@ -78,54 +77,13 @@ unsigned long DELAY2 = 0;   // Variable to hold elapsed time for Step 2
 unsigned long DELAY3 = 0;   // Variable to hold elapsed time for Step 3
 unsigned long DELAY4 = 0;   // Variable to hold elapsed time for Step 4
 
-// Control de condición horario normal / punta
-String input_condicion = "";  // Nueva condición introducida por consola
-String condicion = "valle";  // Por defecto regulación por horario 'normal'. El alternativo es 'punta'
-String cond_prev = "valle";  // Condición en la iteración anterior
-float factor = 1;             // Factor para controlar la condición normal (1) / punta (0.5)
-
 void setup() {
   setupPLC();               // Setup inputs and outputs
   Serial.begin(9600);
-  Serial.println("Condición actual = \"" + condicion + "\"");
-  Serial.println("\n Cambio de regulacion (valle/punta) (en otro caso mantiene estado)-> ");
 }
 
 void loop() {
-  // CAMBIO DE CICLO DE REGULACIÓN POR CONSOLA
-  // Introduce normal ó punta
-  if (Serial.available() > 0) {
-    input_condicion = ""; //vacio lo leido
-    // Serial.println("Cambio de regulacion (valle/punta) (en otro caso mantiene estado)-> ");
-    do {
-      char caracter_leido;
-      delay(5);
-      caracter_leido = Serial.read();
-      input_condicion += caracter_leido;
-      }  while (Serial.available() > 0);
-    if (input_condicion.startsWith("punta")) {
-      condicion = "punta";
-      digitalWrite(LED_BUILTIN, LOW);
-      }
-    else {
-      condicion = "valle";
-      digitalWrite(LED_BUILTIN, HIGH); // Señalizamos con el LED interno (pin 13)            
-      }
-    }
-  if (condicion != cond_prev) {
-    if (condicion == "punta") {
-      factor = 0.2;
-    }
-    else if (condicion == "valle") {
-      factor = 1;
-    }
-    Serial.println("Condición actual = \"" + condicion + "\"");
-    cond_prev = condicion;
-  }
 
-  Serial.print("Valor de START = ");
-  Serial.println(START);
- 
   Serial.print("START= ");
   Serial.print(START);
   Serial.print("\tSTEP1= ");
@@ -139,32 +97,29 @@ void loop() {
   Serial.println("");
   delay(500);
 
-  in(X1);                // For starting on pressing button
-  set(START);
-  //out(START);
-
-  //in(START);
-  timerOn(DELAY0, 2000*factor);    // 2 seconds delay
+                            // Do timed step transitions
+  in(START);                // Read start-up step
+  timerOn(DELAY0, 2000);    // 2 seconds delay
   set(STEP1);               // Activate Step 1
   reset(START);             // Cancel Step 0
   
   in(STEP1);                // Read Step 1
-  timerOn(DELAY1, 4000*factor);    // 4 seconds delay
+  timerOn(DELAY1, 4000);    // 4 seconds delay
   set(STEP2);               // Activate Step 2
   reset(STEP1);             // Cancel Step 1
  
   in(STEP2);                // Read Step 2
-  timerOn(DELAY2, 2000*factor);    // 2 seconds delay
+  timerOn(DELAY2, 2000);    // 2 seconds delay
   set(STEP3);               // Activate Step 3
   reset(STEP2);             // Cancel Step 2
   
   in(STEP3);                // Read Step 3
-  timerOn(DELAY3, 3000*factor);    // 3 seconds delay
+  timerOn(DELAY3, 3000);    // 3 seconds delay
   set(STEP4);               // Activate Step 4
   reset(STEP3);             // Cancel Step 3
   
   in(STEP4);                // Read Step 4
-  timerOn(DELAY4, 1000*factor);    // 1 second delay
+  timerOn(DELAY4, 1000);    // 1 second delay
   set(STEP1);               // Activate Step 1 (again)
   reset(STEP4);             // Cancel Step 4
   
