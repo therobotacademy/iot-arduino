@@ -141,9 +141,7 @@ void loop() {
 
   in(X1);                // For starting on pressing button
   set(START);
-  //out(START);
 
-  //in(START);
   timerOn(DELAY0, 2000*factor);    // 2 seconds delay
   set(STEP1);               // Activate Step 1
   reset(START);             // Cancel Step 0
