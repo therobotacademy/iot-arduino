@@ -123,9 +123,6 @@ void loop() {
     cond_prev = condicion;
   }
 
-  Serial.print("Valor de START = ");
-  Serial.println(START);
- 
   Serial.print("START= ");
   Serial.print(START);
   Serial.print("\tSTEP1= ");
