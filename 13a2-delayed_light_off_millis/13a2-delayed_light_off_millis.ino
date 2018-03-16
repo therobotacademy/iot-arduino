@@ -8,7 +8,7 @@ int state = OFF;  // Estado inicial con LED apagado
 int OffTime = 3000; 
 
 // Internal variables
-int timer;        // Used both for "delayed ligh off" and time since last "end of light off" 
+long timer;        // Used both for "delayed ligh off" and time since last "end of light off" 
 long now, last;
 
 void setup() {
@@ -28,14 +28,15 @@ void loop() {
   Serial.print("iteration time (ms)= "); // This line takes 30 ms!!!!!!
   Serial.print(now-last);                // This line takes 3 ms
   Serial.print ("\t timer: ");           // This line takes 14 ms
-  Serial.println (timer);                // This line takes 3 ms TOTALLING about 40 ms
+  Serial.print (timer);                // This line takes 3 ms TOTALLING about 40 ms
+  Serial.println("");
   last = now;  
 }
 
 void LEDstep() {
   int button;
-  static long t0, t1; // t0: time of button push
-                      // t1: time since light off
+  static long t0, t1; // t0: time instant of button push
+                      // t1: time instant of light off
   button = digitalRead(BUTTON_PIN);
   switch (state) {
     case OFF:

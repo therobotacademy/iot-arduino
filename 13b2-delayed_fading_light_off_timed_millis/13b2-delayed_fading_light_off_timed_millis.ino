@@ -2,12 +2,9 @@
 #define LED_PIN 11
 #define BUTTON_PIN 8
 
-unsigned int OFF = 1;   // Active state at start
-unsigned int ON =  0;
-unsigned int FADING = 0;
-
-unsigned long DELAYon     = 0;   // Variable to hold elapsed time for ON state
-unsigned long DELAYfading = 0;   // Variable to hold elapsed time for FADING state
+#define OFF     0
+#define ON      1
+#define FADING  2
 
 // Control variables
 int state = OFF;  // Estado inicial con LED apagado

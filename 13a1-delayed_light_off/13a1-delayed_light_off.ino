@@ -17,7 +17,7 @@ void setup() {
   // put your setup code here, to run once:
   pinMode(LED_PIN, OUTPUT);
   pinMode(BUTTON_PIN, INPUT);
-  Serial.begin (9600);
+  Serial.begin (115200); // This reduces time execution by a factor of 115200/9600
   last = millis();
 }
 
