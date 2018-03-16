@@ -1,7 +1,7 @@
 //timed Light with plcLib
 #include <plcLib.h>
 
-#define LED_PIN 9
+#define LED_PIN 6
 // Button connected to plcLib input X1, equivalent to       #define BUTTON_PIN A1
 
 unsigned int OFF = 1;
@@ -13,7 +13,6 @@ unsigned long DELAYfading  = 0;   // Variable to hold elapsed time for FADING st
 unsigned long cronoTime    = 0;   // Elapsed time of current crono
 
 // Control variables
-int OffTime = 1000; 
 int OnTime = 3000; 
 int FadingTime = 5000;
 
@@ -33,7 +32,7 @@ void loop() {
   Serial.print("\t FADING = ");  Serial.print(FADING);
   Serial.print("\t (tiempo=) ");  Serial.print(cronoTime);
   Serial.print("\t (brillo=) "); Serial.println(brillo);
-  delay(500);
+  delay(100);
   
   in(X1);   // TRIGGER 'ON': Push button connected to pin A1
   set(ON);

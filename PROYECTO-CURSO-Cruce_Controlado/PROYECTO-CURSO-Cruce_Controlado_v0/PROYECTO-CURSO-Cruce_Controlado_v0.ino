@@ -18,7 +18,7 @@
    Sequential Function Chart
    
          |=========|    |---------------|
-         |  START  |----|  -- Y2 -- Y0  | (GREEN lights only)
+         |  START  |----|  Y3 Y2 Y1 Y0  | (GREEN and RED lights)
          |=========|    |---------------|
               |
              -|-- DELAY0 = 2000 (ms)

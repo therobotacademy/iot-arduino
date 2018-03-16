@@ -12,7 +12,7 @@ int OffTime = 3000;
 int FadingTime = 2000;
 
 int timerON, timerFADING, timerOFF;
-byte brillo;  
+int brillo;  
 
 void setup() {
   pinMode(LED_PIN, OUTPUT);
