@@ -42,6 +42,7 @@ void LEDstep() {
         state = ON;                       // - Change state to ON
         t0 = millis();                    // - Launch ON timer
         digitalWrite(LED_PIN,HIGH);       // - Switch led ON
+        timerOFF = 0;                     // - Reset timer
       } else
         timerOFF = millis()-t1;       // ELSE keep timing OFF state
       break;
@@ -50,20 +51,23 @@ void LEDstep() {
       if (timerON >= OffTime){        // Timer event
         state = FADING;                   // - Change state to FADING
         t0f = millis();                   // - Launch FADING timer
+        timerON = 0;                      // - Reset timer
       } else
         timerON = millis() - t0;      // ELSE keep timing ON state  
+      break;
 
     case FADING:
       if (timerFADING >= FadingTime){ // Timer event
         state = OFF;                      // - Change state to OFF
         t1 = millis();                    // - Launch OFF timer
         digitalWrite(LED_PIN,LOW);        // - Switch led OFF
-
+        timerFADING = 0;                  // - Reset timer
       } else {
         timerFADING = millis()-t0f;       // ELSE keep timing FADING state
         brillo = (255.0 * (FadingTime-timerFADING) / FadingTime);
         if (brillo < 0) brillo = 0;
         analogWrite(LED_PIN,brillo);      // Bright of proportional to countdown
       }
+      break;
    }
 }
